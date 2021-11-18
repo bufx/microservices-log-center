@@ -1,0 +1,11 @@
+http.host: "0.0.0.0"
+path.config: /usr/share/logstash/pipeline/*.conf
+pipeline.batch.size: 500
+pipeline.batch.delay: 50
+# # 若es有安全校验，加上如下几行，用户名不用变，修改相应的密码即可
+# xpack.monitoring.enabled: true
+# # es集群地址
+# xpack.monitoring.elasticsearch.hosts: [ "http://10.10.100.123:9200" ]
+# # 若是docker启动的es，用户名写elastic，若是虚拟机启动的，用户名写 logstash_system
+# xpack.monitoring.elasticsearch.username: elastic
+# xpack.monitoring.elasticsearch.password: Aa000000
