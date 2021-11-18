@@ -1,0 +1,17 @@
+#=========================== Filebeat inputs =============================
+filebeat.inputs:
+- type: log
+  # true则代表开启此输入配置
+  enabled: true
+  # 获取日志文件的目录
+  paths:
+    - /opt/appmgr/*/logs/*.log
+    # 支持指定 /**/ 模式的路径，Filebeat 将会展开 8 层嵌套目录
+    # - /data/filebeat/**/*.log
+  tags: ["ms-log"]
+  
+output.kafka:
+  enabled: true
+  # 可设置kafka集群地址，多个用逗号隔开，格式[“”,””,””]
+  hosts: ["10.10.100.123:19092"]
+  topic: ms-elk-log
