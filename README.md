@@ -7,7 +7,7 @@
 
 ## 日志收集拓扑图
 
-![](https://gitee.com/bufx/oss/raw/master/uPic/RdGkYK1637203429769.png)
+![](assets/RdGkYK1637203429769.png)
 
 ## 设计思路
 
