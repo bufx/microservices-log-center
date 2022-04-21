@@ -27,7 +27,7 @@
 
 基于filebeat的特性，filebeat需要访问具体的log文件路径，这时候如果用单独用容器跑filebeat的话，就需要将应用的log文件映射到filebeat容器内，不是很方便，所以这里设计了：把filebeat放到容器内，伴随着容器的启动，filebeat也一同启动。
 
-配置文件`/usr/share/filebeat/filebeat.yml`：见附件 [filebeat.yml](https://github.com/bufx/microservices-log-center/blob/main/conf/filebeat.yml)
+配置文件`/usr/share/filebeat/filebeat.yml`：见附件 [filebeat.yml](conf/filebeat.yml)
 
 > 注意：
 >
@@ -42,9 +42,9 @@
 
 logstash在从kafka收集日志后，往es中进行写入之前，若索引不存在，需要创建相应的索引，索引名这里规范：字符串+年月日(例如：ms-log-20211117)，其中`ms-logs`是固定字符串，每天生成一个索引，并且每个索引都要有个固定别名：`ms-log`，这很重要，方便后续的检索。
 
-- logstash主配置文件：路径`/usr/share/logstash/config/logstash.yml `见附件[logstash.yml](https://github.com/bufx/microservices-log-center/blob/main/conf/logstash.yml)
+- logstash主配置文件：路径`/usr/share/logstash/config/logstash.yml `见附件[logstash.yml](conf/logstash.yml)
 
-- logstash日志收集配置文件，路径：`/usr/share/logstash/pipeline/ms.conf`见附件[ms.conf](https://github.com/bufx/microservices-log-center/blob/main/conf/ms.conf)
+- logstash日志收集配置文件，路径：`/usr/share/logstash/pipeline/ms.conf`见附件[ms.conf](conf/ms.conf)
 
   >注意：
   >
@@ -52,7 +52,7 @@ logstash在从kafka收集日志后，往es中进行写入之前，若索引不�
   >- 根据自身环境修改es集群地址：`output.elasticsearch.hosts`
   >- 若想修改索引前缀，改 `output.elasticsearch.index`字段的`ms-log`即可，不过，这里修改后，需要修改下面的索引模版`ms-template.json`中的**index_patterns**字段。
 
-- logstash索引模版，路径：`/usr/share/logstash/pipeline/ms-template.json`见附件[ms-template.json](https://github.com/bufx/microservices-log-center/blob/main/conf/ms-template.json)
+- logstash索引模版，路径：`/usr/share/logstash/pipeline/ms-template.json`见附件[ms-template.json](conf/ms-template.json)
 
 ### log-center与查询接口实现
 

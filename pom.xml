@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>shunt-log-center-provider</module>
+    <module>shunt-log-center-service</module>
+  </modules>
+  <parent>
+    <groupId>buubiu.paas.bufx</groupId>
+    <artifactId>buubiu-paas-bufx-broker</artifactId>
+    <version>2.1.4-SNAPSHOT</version>
+  </parent>
+  <artifactId>shunt-log-center</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0.RELEASE</version>
+
+  <properties>
+    <shunt.common.version>2.1.4-SNAPSHOT</shunt.common.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>buubiu.paas.bufx</groupId>
+      <artifactId>shunt-common</artifactId>
+      <version>${shunt.common.version}</version>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${compiler.version}</source>
+          <target>${compiler.version}</target>
+        </configuration>
+      </plugin>
+      <!-- pipeline中执行代码扫描的组件，和业务无关 -->
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
